@@ -1,0 +1,46 @@
+# Load rules_haskell rules.
+load(
+    "@rules_haskell//haskell:defs.bzl",
+    "haskell_binary",
+    "haskell_toolchain_library",
+)
+load("@io_bazel_rules_docker//cc:image.bzl", "cc_image")
+
+# Set all target’s visibility in this package to "public".
+package(default_visibility = ["//visibility:public"])
+
+# haskell_toolchain_library can access builtin GHC packages
+# and assign them a bazel target name, so that they
+# can be referenced as dependencies.
+haskell_toolchain_library(name = "base")
+
+haskell_toolchain_library(name = "zlib")
+
+# You can add your own libraries with haskell_library.
+# haskell_library(
+#     name = "MY_LIBRARY_NAME",
+#     src_strip_prefix = "src",
+#     srcs = glob(['src/**/*.hs']),
+#     deps = [
+#         "base_pkg"
+#     ],
+# )
+
+# An example binary using the Prelude module from the
+# GHC base package, and zlib from stackage, to print the hello world.
+haskell_binary(
+    name = "example",
+    srcs = [":Example.hs"],
+    deps = [
+        ":base",
+        ":zlib",
+    ],
+)
+
+cc_image(
+    name = "example-image",
+    base = "@haskell-base-image//image",
+    binary = ":example",
+    creation_time = "{BUILD_TIMESTAMP}",
+    stamp = True,
+)
