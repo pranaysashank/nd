@@ -68,12 +68,12 @@ http_archive(
     urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.23.0/rules_docker-v0.23.0.tar.gz"],
 )
 
-load("@io_bazel_rules_docker//toolchains/docker:toolchain.bzl", docker_toolchain_configure = "toolchain_configure")
+# load("@io_bazel_rules_docker//toolchains/docker:toolchain.bzl", docker_toolchain_configure = "toolchain_configure")
 
-docker_toolchain_configure(
-    name = "docker_config",
-    docker_path = "/usr/bin/docker",
-)
+# docker_toolchain_configure(
+#     name = "docker_config",
+#     docker_path = "/usr/bin/docker",
+# )
 
 load("@io_bazel_rules_docker//container:container.bzl", "container_load")
 load("@io_bazel_rules_docker//repositories:repositories.bzl", container_repositories = "repositories")
