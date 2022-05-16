@@ -1,8 +1,9 @@
 with (import <nixpkgs> { config = {}; overlays = []; });
 
 {
-    exampleDeps = haskell.packages.ghc8107.ghcWithPackages (p: with p; [
+    ndDeps = haskell.packages.ghc8107.ghcWithPackages (p: with p; [
+        aeson
         base
-        zlib
+        parsec
         ]);
 }

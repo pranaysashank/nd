@@ -1,10 +1,10 @@
 let
   nixpkgs = builtins.fetchTarball {
-    # commit from March 2022, branch: nixpkgs-unstable
+    # commit from April 2022, branch: nixpkgs-unstable
     url =
-      "https://github.com/NixOS/nixpkgs/archive/3eb07eeafb52bcbf02ce800f032f18d666a9498d.tar.gz";
-    sha256 = "1ah1fvll0z3w5ykzc6pabqr7mpbnbl1i3vhmns6k67a4y7w0ihrr";
+      "https://github.com/NixOS/nixpkgs/archive/faad370edcb37162401be50d45526f52bb16a713.tar.gz";
+    sha256 = "sha256:1d82d4vh0layf6n925j0h2nym16jbvcvps3l5m8ln9hxn0m6gadn";
   };
 
-in
-import nixpkgs
+in 
+_ : import nixpkgs {}
